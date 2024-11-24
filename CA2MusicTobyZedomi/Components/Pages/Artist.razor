@@ -1,5 +1,72 @@
-﻿<h3>Artist</h3>
+﻿<PageTitle>Artist</PageTitle>
+
+<h3>Artist Search</h3>
+<input placeholder="Search for artist..." @bind="artist" />
+<button @onclick="searchArtist">Search Artist</button>
+
+
+<ol>
+    @if (a != null)
+    {
+
+        @foreach (var artist in a.TheArtist.results.artistmatches.artist)
+        {
+
+            <li>
+                @artist.name
+            </li>
+        }
+    }
+</ol>
+
+<br />
+<button @onclick="getTopArtist">Top Artist</button>
+
+<ol>
+    @if (a1 != null)
+    {
+
+
+        @foreach (var artist in a1.TheTopArtist)
+        {
+            <li>
+                @artist.name;
+            </li>
+        }
+    }
+</ol>
+
+
 
 @code {
+
+    private string? artist;
+    private MusicArtist? a;
+
+
+    private void searchArtist()
+    {
+
+        if (!string.IsNullOrWhiteSpace(artist))
+        {
+
+            a = new MusicArtist(artist);
+
+        }
+
+        artist = string.Empty;
+    }
+
+    // get top artist
+
+    private MusicArtist? a1;
+
+
+    private void getTopArtist()
+    {
+
+            a1 = new MusicArtist();
+
+    }
 
 }
