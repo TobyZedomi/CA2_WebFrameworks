@@ -73,6 +73,72 @@ namespace CA2MusicTobyZedomi
 
         }
 
+
+        // search Song
+
+        public static SearchSong? SearchForSong(string track)
+        {
+
+            var client = new RestClient("http://ws.audioscrobbler.com/2.0/");
+            var request = new RestRequest();
+
+            string Myuser = "test";
+            string myMethod = "track.search";
+            string myKey = "833c3bfe07b3b78ddd9a75eaff0ccaaf";
+
+            request.AddParameter("method", myMethod);
+            request.AddParameter("user", Myuser);
+            request.AddParameter("api_key", myKey);
+            request.AddParameter("track", track);
+            request.AddParameter("limit", 10);
+            request.AddParameter("format", "json");
+
+            var response = client.Get(request);
+
+            if (!string.IsNullOrEmpty(response.Content))
+            {
+
+                string receivedJson = response.Content;
+                SearchSong? theSong = JsonConvert.DeserializeObject<SearchSong>(receivedJson);
+                return theSong;
+
+            }
+            return null;
+        }
+
+        // get top track 
+
+        public static TopSong? GetTopSong()
+        {
+
+            var client = new RestClient("http://ws.audioscrobbler.com/2.0/");
+            var request = new RestRequest();
+
+            string Myuser = "test";
+            string myMethod = "chart.getTopTracks";
+            request.AddParameter("method", myMethod);
+            request.AddParameter("user", Myuser);
+            string myKey = "833c3bfe07b3b78ddd9a75eaff0ccaaf";
+            request.AddParameter("api_key", myKey);
+            request.AddParameter("limit", 10);
+            request.AddParameter("format", "json");
+
+            var response = client.Get(request);
+
+            if (!string.IsNullOrEmpty(response.Content))
+            {
+
+                string receivedJson = response.Content;
+                TopSong? topSongs = JsonConvert.DeserializeObject<TopSong>(receivedJson);
+                return topSongs;
+
+            }
+
+            return null;
+
+        }
+
+
     }
 
 

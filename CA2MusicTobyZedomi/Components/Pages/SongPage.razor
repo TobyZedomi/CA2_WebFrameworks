@@ -1,0 +1,165 @@
+﻿<PageTitle>Song Page</PageTitle>
+
+<style>
+    table, th, td {
+      border:1px solid black;
+    }
+</style>
+
+<h3>Artist/Song Search</h3>
+<input placeholder="Search for artist..." @bind="artist" />
+<input placeholder="Search for song..." @bind="song" />
+<button @onclick="searchArtist">Search Artist/Song</button>
+
+
+<!-- Search Artist results -->
+<ol>
+    @if (a != null)
+    {
+
+        @foreach (var song in a)
+        {
+            <br />
+
+            @foreach (var artist in song.TheArtist.results.artistmatches.artist)
+            {
+
+                <table style="width:25%">
+                <tr>
+                    <th><li>@artist.name</li></th>
+                    
+                </tr>
+
+                </table>
+                
+            }
+
+            <br />
+
+            @foreach (var track in song.TheSong.results.trackmatches.track)
+
+            {
+                <table style="width:25%">
+                    <tr>
+                        <th><li>@track.name</li></th>
+
+                    </tr>
+                </table>
+
+
+            }
+            <br />
+
+            <button @onclick="@(e => Delete(song))">
+                Delete
+            </button>
+            <br />
+
+
+        }
+    }
+</ol>
+
+<br />
+
+
+<button @onclick="SortComments">Sort Comment</button>
+
+<br />
+
+
+
+
+<!-- Get top song results -->
+
+<br />
+
+<button @onclick="getTopSongs">Top Song</button>
+
+
+<ol>
+    @if (a1 != null)
+    {
+        <br />
+
+        @foreach (var track in a1.TheTopArtist)
+        {
+            <table style="width:25%">
+                <tr>
+                    <th>
+            <li>@track.name</li></th>
+
+            </tr>
+            </table>
+
+            
+        }
+
+        
+    }
+</ol>
+
+
+@code {
+
+    private string? artist;
+    private string? song;
+    private List<Song?> a = new();
+
+    private void searchArtist()
+    {
+
+        if (!string.IsNullOrWhiteSpace(artist) && !string.IsNullOrWhiteSpace(song))
+        {
+
+            Song newSong = new Song(song, artist);
+
+
+            if (!CheckDuplicateComment(newSong))
+            {
+                a.Add(newSong);
+            }
+
+        }
+
+        artist = string.Empty;
+        song = string.Empty;
+    }
+
+    public bool CheckDuplicateComment(Song song)
+    {
+
+        foreach (var songToCompare in a)
+        {
+            if (songToCompare.Equals(song))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    // get top song
+
+    private Song? a1;
+
+    private void getTopSongs()
+    {
+
+             a1 = new Song();
+
+    }
+
+    private void SortComments()
+    {
+        a.Sort();
+    }
+
+
+    private void Delete(Song song)
+    {
+        a.Remove(song);
+    }
+  
+}

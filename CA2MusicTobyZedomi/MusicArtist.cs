@@ -2,7 +2,7 @@
 
 namespace CA2MusicTobyZedomi
 {
-    public class MusicArtist
+    public abstract class MusicArtist
     {
         private string artistName;
         private Artists? theArtist;
