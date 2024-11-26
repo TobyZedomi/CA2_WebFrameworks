@@ -77,7 +77,7 @@ namespace CA2MusicTobyZedomi
 
         // search Song
 
-        public static SearchSong? SearchForSong(string track)
+        public static SearchSong? SearchForSong(string track, string artist)
         {
 
             var client = new RestClient("http://ws.audioscrobbler.com/2.0/");
@@ -91,6 +91,7 @@ namespace CA2MusicTobyZedomi
             request.AddParameter("user", Myuser);
             request.AddParameter("api_key", myKey);
             request.AddParameter("track", track);
+            request.AddParameter("artist", artist);
             request.AddParameter("limit", 10);
             request.AddParameter("format", "json");
 

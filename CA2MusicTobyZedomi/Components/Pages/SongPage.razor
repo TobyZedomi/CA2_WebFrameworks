@@ -10,8 +10,8 @@
 </style>
 
 <h3>Artist Search</h3>
-<input placeholder="Search for artist..." @bind="artist" />
 <input placeholder="Search for song..." @bind="song" />
+<input placeholder="Search for artist..." @bind="artist" />
 <button @onclick="searchArtist">Search Artist</button>
 
 
@@ -24,18 +24,20 @@
         {
             <br />
 
-            @foreach (var artist in song.TheArtist.results.artistmatches.artist)
-            {
+            
+        //    @foreach (var artist in song.TheArtist.results.artistmatches.artist)
+          //  {
 
-                <table style="width:25%">
-                <tr>
-                    <th><li>@artist.name</li></th>
-                    
-                </tr>
+             //   <table style="width:25%">
+            //    <tr>
+             //       <th><li>@artist.name</li></th>
+            //        
+            //    </tr>
 
-                </table>
+             //   </table>
                 
-            }
+          //  }
+            
 
             <br />
 
@@ -115,7 +117,7 @@
         if (!string.IsNullOrWhiteSpace(artist) && !string.IsNullOrWhiteSpace(song))
         {
 
-            Song newSong = new Song(song, artist);
+            Song newSong = new Song(song, artist, "null");
 
 
             if (!CheckDuplicateComment(newSong))

@@ -17,7 +17,6 @@ namespace CA2MusicTobyZedomi.Music
             AlbumName = albumName;
             TheAlbum = MusicService.SearchForAlbum(albumName);
             TheTopAlbums = MusicService.GetTopAlbum().topalbums.album;
-
             TheArtist = MusicService.SearchForArtist(artistName);
             TheTopArtist = MusicService.GetTopArtists().artists.artist;
         }
