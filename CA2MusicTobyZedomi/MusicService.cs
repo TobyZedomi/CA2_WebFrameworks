@@ -141,7 +141,7 @@ namespace CA2MusicTobyZedomi
         }
 
 
-        // search for album
+        // search for album, xml 
 
 
         public static SearchAlbum? SearchForAlbum(string track)
@@ -175,7 +175,7 @@ namespace CA2MusicTobyZedomi
         }
 
 
-        // get top album 
+        // get top album, xml
 
         public static TopAlbum? GetTopAlbum()
         {
