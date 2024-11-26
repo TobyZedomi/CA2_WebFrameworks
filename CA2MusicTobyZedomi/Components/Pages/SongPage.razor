@@ -9,13 +9,13 @@
     }
 </style>
 
-<h3>Artist Search</h3>
-<input placeholder="Search for song..." @bind="song" />
-<input placeholder="Search for artist..." @bind="artist" />
-<button @onclick="searchArtist">Search Artist</button>
+<h3>Song Search</h3>
+<input placeholder="Enter song..." @bind="song" />
+<input placeholder="Enter artist..." @bind="artist" />
+<button @onclick="searchSong">Search For Song</button>
 
 
-<!-- Search Artist results -->
+<!-- Search Song results -->
 <ol>
     @if (a != null)
     {
@@ -68,14 +68,14 @@
 <br />
 
 
-<button @onclick="SortComments">Sort Comment</button>
+<button @onclick="SortSongs">Sort Comment</button>
 
 <br />
 
 
 
 
-<!-- Get top  results -->
+<!-- Get top results for song -->
 
 <br />
 
@@ -111,7 +111,9 @@
     private string? song;
     private List<Song?> a = new();
 
-    private void searchArtist()
+    //search for songs
+
+    private void searchSong()
     {
 
         if (!string.IsNullOrWhiteSpace(artist) && !string.IsNullOrWhiteSpace(song))
@@ -120,7 +122,7 @@
             Song newSong = new Song(song, artist, "null");
 
 
-            if (!CheckDuplicateComment(newSong))
+            if (!CheckDuplicateSong(newSong))
             {
                 a.Add(newSong);
             }
@@ -131,7 +133,9 @@
         song = string.Empty;
     }
 
-    public bool CheckDuplicateComment(Song song)
+    // check duplicate
+
+    public bool CheckDuplicateSong(Song song)
     {
 
         foreach (var songToCompare in a)
@@ -156,11 +160,14 @@
 
     }
 
-    private void SortComments()
+    // sort songs
+
+    private void SortSongs()
     {
         a.Sort();
     }
 
+    // delete songs
 
     private void Delete(Song song)
     {
