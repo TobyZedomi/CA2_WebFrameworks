@@ -1,12 +1,10 @@
-﻿
-
-namespace CA2MusicTobyZedomi
+﻿namespace CA2MusicTobyZedomi.Music
 {
     public abstract class MusicArtist
     {
         private string artistName;
         private Artists? theArtist;
-        private Artist? [] theTopArtist;
+        private Artist?[] theTopArtist;
 
 
         public MusicArtist(string artistName)
@@ -19,13 +17,13 @@ namespace CA2MusicTobyZedomi
 
         public MusicArtist()
         {
-           
+
             TheTopArtist = MusicService.GetTopArtists().artists.artist;
         }
 
         public string ArtistName { get => artistName; set => artistName = value; }
         public Artists? TheArtist { get => theArtist; set => theArtist = value; }
-          public Artist?[] TheTopArtist { get => theTopArtist; set => theTopArtist = value; }
+        public Artist?[] TheTopArtist { get => theTopArtist; set => theTopArtist = value; }
 
 
 

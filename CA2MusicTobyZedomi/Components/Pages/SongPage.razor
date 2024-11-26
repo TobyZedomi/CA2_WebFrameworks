@@ -1,4 +1,7 @@
-﻿<PageTitle>Song Page</PageTitle>
+﻿@using CA2MusicTobyZedomi.Music
+
+
+<PageTitle>Song Page</PageTitle>
 
 <style>
     table, th, td {
@@ -6,10 +9,10 @@
     }
 </style>
 
-<h3>Artist/Song Search</h3>
+<h3>Artist Search</h3>
 <input placeholder="Search for artist..." @bind="artist" />
 <input placeholder="Search for song..." @bind="song" />
-<button @onclick="searchArtist">Search Artist/Song</button>
+<button @onclick="searchArtist">Search Artist</button>
 
 
 <!-- Search Artist results -->
@@ -70,7 +73,7 @@
 
 
 
-<!-- Get top song results -->
+<!-- Get top  results -->
 
 <br />
 
@@ -161,5 +164,9 @@
     {
         a.Remove(song);
     }
+
+
+   
+
   
 }

@@ -1,7 +1,4 @@
-﻿
-
-
-namespace CA2MusicTobyZedomi
+﻿namespace CA2MusicTobyZedomi.Music
 {
     public class Song : MusicArtist, IComparable<Song>
     {
@@ -12,7 +9,7 @@ namespace CA2MusicTobyZedomi
 
         public Song(string songName, string artistName) : base(artistName)
         {
-            this.SongName = songName;
+            SongName = songName;
             TheSong = MusicService.SearchForSong(songName);
             TheTopSongs = MusicService.GetTopSong().tracks.track;
             TheArtist = MusicService.SearchForArtist(artistName);
@@ -34,7 +31,7 @@ namespace CA2MusicTobyZedomi
         public SearchSong? TheSong { get => theSong; set => theSong = value; }
         public Track3?[] TheTopSongs { get => theTopSongs; set => theTopSongs = value; }
 
-      
+
 
         /*
         public override bool Equals(object? obj)
