@@ -84,7 +84,7 @@
 
 <br>
 
-<h3>Get Most Popular Artist By Country</h3>
+<h3>Get Most Popular Artist in Country</h3>
 <input placeholder="Enter country..." @bind="country" />
 <button @onclick="mostPopularArtist">Search For Artist</button>
 
@@ -108,6 +108,26 @@
         }
 
 
+    }
+</ol>
+
+<!--News on top artist-->
+
+<ol>
+    @if (t != null)
+    {
+
+        @foreach (var docs in t.response.docs)
+        {
+            <table style="width:80%">
+                <tr>
+                    <th><li>@docs.section_name</li></th>
+                    <th>@docs.lead_paragraph</th>
+
+
+            </tr>
+            </table>
+        }
     }
 </ol>
 
@@ -222,7 +242,7 @@
     private string? country;
     private lfm? theCountry;
     private Album? a2;
-   
+    private ArtistNews? t;
 
 
     public void mostPopularArtist()
@@ -235,6 +255,8 @@
                 a2 = new Album(country);
 
                 theCountry = a2.mostPopularArtistByCountry();
+
+                t = NewsService.SearchArtistNews(country);
             }
 
         }
@@ -243,5 +265,8 @@
     }
 
 
+
+   
+  
 
 }

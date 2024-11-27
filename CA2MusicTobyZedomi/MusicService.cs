@@ -257,7 +257,7 @@ namespace CA2MusicTobyZedomi
             request.AddParameter("user", Myuser);
             request.AddParameter("api_key", myKey);
             request.AddParameter("country", country);
-            request.AddParameter("limit", 10);
+            request.AddParameter("limit", 1);
             request.AddParameter("format", "xml");
 
             var response = client.Get(request);

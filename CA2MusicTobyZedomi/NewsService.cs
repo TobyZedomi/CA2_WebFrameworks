@@ -75,7 +75,7 @@ namespace CA2MusicTobyZedomi
 
 
         /// search for artist information
-        /// 
+        /// using this one
 
         public static ArtistNews? SearchArtistNews(string artist)
         {

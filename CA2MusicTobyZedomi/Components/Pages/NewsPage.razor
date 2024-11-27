@@ -18,13 +18,11 @@
 <br />
 <br />
 
-<!---<h3>Search for news</h3>
-<input placeholder="Enter section" @bind="section" />-->
-
-
+<h3>Search for news</h3>
+<input placeholder="Enter section" @bind="section" />
 <button @onclick="searchNews">Search Section</button>
 
-<!---
+
 <ol>
     @if (t != null)
     {
@@ -38,7 +36,7 @@
         }
     }
 </ol>
--->
+
 
 
 @code {
@@ -59,8 +57,6 @@
 
     private void searchNews()
     {
-
-
         t = NewsService.SearchArtistNews(section);
     }
 
