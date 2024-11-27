@@ -2,7 +2,7 @@
 {
     public interface IMostPopular
     {
-        public TopArtistCountry? mostPopularArtistByCountry(string country);
+        public lfm? mostPopularArtistByCountry();
 
     }
 }

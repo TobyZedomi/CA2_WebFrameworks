@@ -1,11 +1,12 @@
 ﻿
+
 // NOTE: Generated code may require at least .NET Framework 4.5 or .NET Core/Standard 2.0.
 /// <remarks/>
 [System.SerializableAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
 [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
-public partial class TopArtistCountry
+public partial class lfm
 {
 
     private lfmTopartists topartistsField;
@@ -55,7 +56,7 @@ public partial class lfmTopartists
 
     private byte perPageField;
 
-    private ushort totalPagesField;
+    private uint totalPagesField;
 
     private uint totalField;
 
@@ -117,7 +118,7 @@ public partial class lfmTopartists
 
     /// <remarks/>
     [System.Xml.Serialization.XmlAttributeAttribute()]
-    public ushort totalPages
+    public uint totalPages
     {
         get
         {

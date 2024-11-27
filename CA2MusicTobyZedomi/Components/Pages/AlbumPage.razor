@@ -90,11 +90,11 @@
 
 
 <ol>
-    @if (theCountry != null)
+    @if (a2 != null)
     {
         <br />
 
-        @foreach (var artist in theCountry.topartists.artist)
+        @foreach (var artist in a2.TheCountry.topartists.artist)
         {
             <table style="width:25%">
                 <tr>
@@ -220,19 +220,24 @@
     // interface
 
     private string? country;
-    private TopArtistCountry? theCountry;
+    private lfm? theCountry;
+    private Album? a2;
+    //  private List<Album?> a2 = new();
+
 
     public void mostPopularArtist()
     {
 
-       // if (!string.IsNullOrWhiteSpace(country))
-       // {
+        if (!string.IsNullOrWhiteSpace(country))
+        {
 
-            theCountry = MusicService.getTopArtistByCountry(country);
+            a2 = new Album(country);
 
-      //  }
+            theCountry = a2.mostPopularArtistByCountry(); 
 
-      //  country = string.Empty;
+        }
+
+        country = string.Empty;
     }
 
 

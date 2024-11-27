@@ -243,7 +243,7 @@ namespace CA2MusicTobyZedomi
         }
 
 
-        public static TopArtistCountry? getTopArtistByCountry(string country)
+        public static lfm? getTopArtistByCountry(string country)
         {
 
             var client = new RestClient("http://ws.audioscrobbler.com/2.0/");
@@ -258,17 +258,17 @@ namespace CA2MusicTobyZedomi
             request.AddParameter("api_key", myKey);
             request.AddParameter("country", country);
             request.AddParameter("limit", 10);
-            //request.AddParameter("format", "xml");
+            request.AddParameter("format", "xml");
 
             var response = client.Get(request);
 
             if (!string.IsNullOrEmpty(response.Content))
             {
 
-                var serializer = new XmlSerializer(typeof(TopArtistCountry));
+                var serializer = new XmlSerializer(typeof(lfm));
                 using (StringReader sr = new(response.Content))
                 {
-                    TopArtistCountry? filtered = (TopArtistCountry?)serializer.Deserialize(sr);
+                    lfm? filtered = (lfm?)serializer.Deserialize(sr);
                     return filtered;
                 }
 

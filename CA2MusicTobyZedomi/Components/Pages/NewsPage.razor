@@ -1,0 +1,67 @@
+﻿@page "/news"
+
+
+<h3>NewsPage</h3>
+
+
+<button @onclick="books">Top Books</button>
+
+
+@if(book != null)
+{
+    @foreach(var results in book.results)
+    {
+        <li>@results.list_name</li>
+    }
+}
+
+<br />
+<br />
+
+<!---<h3>Search for news</h3>
+<input placeholder="Enter section" @bind="section" />-->
+
+
+<button @onclick="searchNews">Search Section</button>
+
+<!---
+<ol>
+    @if (t != null)
+    {
+
+        @foreach (var docs in t.response.docs)
+        {
+
+            <li>
+                @docs.section_name
+            </li>
+        }
+    }
+</ol>
+-->
+
+
+@code {
+
+
+
+    private GetBook? book;
+
+    private void books()
+    {
+        book = NewsService.getBookNames();
+    }
+
+
+    private string? section;
+    private ArtistNews? t;
+    private TopAlbum? album;
+
+    private void searchNews()
+    {
+
+
+        t = NewsService.SearchArtistNews(section);
+    }
+
+}

@@ -9,7 +9,8 @@ namespace CA2MusicTobyZedomi.Music
         private string albumName;
         private SearchAlbum? theAlbum;
         private Album5?[] theTopAlbums;
-        private TopArtistCountry? theCountry;
+        private lfm? theCountry;
+        private string country;
 
 
         public Album(string albumName, string artistName) : base(artistName)
@@ -29,12 +30,18 @@ namespace CA2MusicTobyZedomi.Music
             TheTopArtist = MusicService.GetTopArtists().artists.artist;
         }
 
+        public Album(string country)
+        {
+            this.country = country;
+        }
+
         // getters and setters
 
         public string AlbumName { get => albumName; set => albumName = value; }
         public SearchAlbum? TheAlbum { get => theAlbum; set => theAlbum = value; }
         public Album5?[] TheTopAlbums { get => theTopAlbums; set => theTopAlbums = value; }
-        public TopArtistCountry? TheCountry { get => theCountry; set => theCountry = value; }
+        public lfm? TheCountry { get => theCountry; set => theCountry = value; }
+        public string Country { get => country; set => country = value; }
 
 
         /*
@@ -116,10 +123,11 @@ namespace CA2MusicTobyZedomi.Music
 
         // interface method
 
-        public TopArtistCountry? mostPopularArtistByCountry(string country)
+        public lfm? mostPopularArtistByCountry()
         {
           
-            theCountry = MusicService.getTopArtistByCountry(country);
+           theCountry = MusicService.getTopArtistByCountry(country);
+
 
             return theCountry;
         }
