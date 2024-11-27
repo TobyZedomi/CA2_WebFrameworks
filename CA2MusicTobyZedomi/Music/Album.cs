@@ -2,28 +2,28 @@
 
 namespace CA2MusicTobyZedomi.Music
 {
-    public class Album : MusicArtist, IComparable<Album>
+    public class Album : MusicArtist, IComparable<Album>, IMostPopular
     {
 
 
         private string albumName;
         private SearchAlbum? theAlbum;
         private Album5?[] theTopAlbums;
-
+        private TopArtistCountry? theCountry;
 
 
         public Album(string albumName, string artistName) : base(artistName)
         {
             AlbumName = albumName;
             TheAlbum = MusicService.SearchForAlbum(albumName);
-          //  TheTopAlbums = MusicService.GetTopAlbum().topalbums.album;
+            //  TheTopAlbums = MusicService.GetTopAlbum().topalbums.album;
             TheArtist = MusicService.SearchForArtist(artistName);
             TheTopArtist = MusicService.GetTopArtists().artists.artist;
         }
 
 
 
-        public Album() 
+        public Album()
         {
             TheTopAlbums = MusicService.GetTopAlbum().topalbums.album;
             TheTopArtist = MusicService.GetTopArtists().artists.artist;
@@ -34,6 +34,7 @@ namespace CA2MusicTobyZedomi.Music
         public string AlbumName { get => albumName; set => albumName = value; }
         public SearchAlbum? TheAlbum { get => theAlbum; set => theAlbum = value; }
         public Album5?[] TheTopAlbums { get => theTopAlbums; set => theTopAlbums = value; }
+        public TopArtistCountry? TheCountry { get => theCountry; set => theCountry = value; }
 
 
         /*
@@ -112,5 +113,18 @@ namespace CA2MusicTobyZedomi.Music
         {
             return HashCode.Combine(ArtistName, albumName);
         }
+
+        // interface method
+
+        public TopArtistCountry? mostPopularArtistByCountry(string country)
+        {
+          
+            theCountry = MusicService.getTopArtistByCountry(country);
+
+            return theCountry;
+        }
+
+
     }
+
 }

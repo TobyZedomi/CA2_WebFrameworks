@@ -18,18 +18,25 @@
 
 <b></b>
 
-@for(int i = 0; i < u.Count;i++)
+@if (u != null)
 {
-    if(u[i].Name.Equals(name, StringComparison.InvariantCultureIgnoreCase) && u[i].Password.Equals(password))
-    {
 
-        <br />
-        <a href="home"><button>Go to Home Page</button></a>
-    }
-    else
+    @for (int i = 0; i < u.Count; i++)
     {
-       <p>Login Failed so regestier users</p>
+        if (u[i].Name.Equals(name, StringComparison.InvariantCultureIgnoreCase) && u[i].Password.Equals(password))
+        {
+            <br />
+            <a href="home"><button>Go to Home Page</button></a>
+        }
+        else
+
+        {
+            <p>Login Failed so regestier users</p>
+
+        }
+
     }
+
 }
 
 <br />

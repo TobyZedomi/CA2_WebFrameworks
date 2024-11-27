@@ -82,9 +82,34 @@
 
 <br />
 
+<br>
+
+<h3>Get Most Popular Artist By Country</h3>
+<input placeholder="Enter country..." @bind="country" />
+<button @onclick="mostPopularArtist">Search For Artist</button>
 
 
+<ol>
+    @if (theCountry != null)
+    {
+        <br />
 
+        @foreach (var artist in theCountry.topartists.artist)
+        {
+            <table style="width:25%">
+                <tr>
+                    <th>
+            <li>@artist.name</li></th>
+
+            </tr>
+            </table>
+
+
+        }
+
+
+    }
+</ol>
 
 
 <!---
@@ -128,7 +153,7 @@
 
     public void searchAlbum()
     {
-        
+
         if (!string.IsNullOrWhiteSpace(album) && !string.IsNullOrWhiteSpace(artist))
         {
 
@@ -190,5 +215,26 @@
         a1 = new Album();
 
     }
+
+
+    // interface
+
+    private string? country;
+    private TopArtistCountry? theCountry;
+
+    public void mostPopularArtist()
+    {
+
+       // if (!string.IsNullOrWhiteSpace(country))
+       // {
+
+            theCountry = MusicService.getTopArtistByCountry(country);
+
+      //  }
+
+      //  country = string.Empty;
+    }
+
+
 
 }

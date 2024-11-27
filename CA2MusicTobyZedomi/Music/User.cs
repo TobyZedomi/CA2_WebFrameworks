@@ -1,4 +1,6 @@
 ﻿
+using CA2MusicTobyZedomi.Components.Pages;
+
 namespace CA2MusicTobyZedomi.Music
 {
     public class User
@@ -34,19 +36,43 @@ namespace CA2MusicTobyZedomi.Music
         public string Password { get => password; set => password = value; }
 
 
+      
+
         // equals and hash
         public override bool Equals(object? obj)
         {
-            return obj is User user &&
-                   name == user.name &&
-                   email == user.email &&
-                   password == user.password;
+            if (!(obj is Song))
+            {
+                return false;
+            }
+            var user = (User)obj;
+            if (user.name.Equals(name) && user.email.Equals(email) && user.password.Equals(password))
+            {
+
+                return true;
+
+            }
+            return false;
         }
+
+
+        public static bool operator ==(User left, User right)
+        {
+            return !left.Equals(right);
+        }
+
+        public static bool operator !=(User left, User right)
+        {
+            return !left.Equals(right);
+        }
+
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(name, email, password);
+            return (name, email, password).GetHashCode();
         }
+
+
 
         //toString
         public override string ToString()
