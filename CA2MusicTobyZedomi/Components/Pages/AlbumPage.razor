@@ -1,0 +1,194 @@
+﻿@page "/album"
+
+@using CA2MusicTobyZedomi.Music
+
+
+<h3>AlbumPage</h3>
+
+<style>
+    table, th, td {
+      border:1px solid black;
+    }
+</style>
+
+<h3>Album & Artist Search</h3>
+<input placeholder="Search for album..." @bind="album" />
+<input placeholder="Search for artist..." @bind="artist" />
+<button @onclick="searchAlbum">Search For Album/Artist</button>
+
+
+<!-- Search Album/Artist results -->
+<ol>
+    @if (a != null)
+    {
+
+        @foreach (var albums in a)
+        {
+
+
+            <br />
+
+            <p>Albums</p>
+
+            @foreach (var album in albums.TheAlbum.results.albummatches.album)
+
+            {
+                <table style="width:25%">
+                    <tr>
+                        <th>
+                <li>@album.name</li></th>
+
+                </tr>
+                </table>
+
+
+            }
+            <br />
+
+
+            <br />
+
+            <p>Artist</p>
+
+                @foreach (var artist in albums.TheArtist.results.artistmatches.artist)
+              {
+
+               <table style="width:25%">
+                <tr>
+                  <th><li>@artist.name</li></th>
+            
+               </tr>
+
+                      </table>
+
+              }
+
+
+
+            <button @onclick="@(e => Delete(albums))">
+                Delete
+            </button>
+            <br />
+
+
+        }
+    }
+</ol>
+
+<br />
+
+
+<button @onclick="SortAlbum">Sort Albums</button>
+
+<br />
+
+
+
+
+
+
+<!---
+<br />
+
+<button @onclick="getTopAlbums">Top Album</button>
+
+
+<ol>
+    @if (a1 != null)
+    {
+        <br />
+
+        @foreach (var album in a1.TheTopAlbums)
+        {
+            <table style="width:25%">
+                <tr>
+                    <th>
+            <li>@album.name</li></th>
+
+            </tr>
+            </table>
+
+
+        }
+
+
+    }
+</ol>
+-->
+
+
+@code {
+
+
+
+    private string? album;
+    private string? artist;
+    private List<Album?> a = new();
+
+
+    public void searchAlbum()
+    {
+        
+        if (!string.IsNullOrWhiteSpace(album) && !string.IsNullOrWhiteSpace(artist))
+        {
+
+            Album newAlbum = new Album(album, artist);
+
+
+            if (!CheckDuplicateAlbum(newAlbum))
+            {
+                a.Add(newAlbum);
+            }
+
+        }
+
+        album = string.Empty;
+        artist = string.Empty;
+
+    }
+
+
+    // check duplicate
+
+    public bool CheckDuplicateAlbum(Album album)
+    {
+
+        foreach (var albumToCompare in a)
+        {
+            if (albumToCompare.Equals(album))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+    // sort songs
+
+    private void SortAlbum()
+    {
+        a.Sort();
+    }
+
+    // delete songs
+
+    private void Delete(Album album)
+    {
+        a.Remove(album);
+    }
+
+
+    // getTopAlbums
+
+    private Album? a1;
+
+    private void getTopAlbums()
+    {
+
+        a1 = new Album();
+
+    }
+
+}

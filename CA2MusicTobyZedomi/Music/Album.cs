@@ -2,7 +2,7 @@
 
 namespace CA2MusicTobyZedomi.Music
 {
-    public class Album : MusicArtist
+    public class Album : MusicArtist, IComparable<Album>
     {
 
 
@@ -16,15 +16,91 @@ namespace CA2MusicTobyZedomi.Music
         {
             AlbumName = albumName;
             TheAlbum = MusicService.SearchForAlbum(albumName);
-            TheTopAlbums = MusicService.GetTopAlbum().topalbums.album;
+          //  TheTopAlbums = MusicService.GetTopAlbum().topalbums.album;
             TheArtist = MusicService.SearchForArtist(artistName);
             TheTopArtist = MusicService.GetTopArtists().artists.artist;
         }
+
+
+
+        public Album() 
+        {
+            TheTopAlbums = MusicService.GetTopAlbum().topalbums.album;
+            TheTopArtist = MusicService.GetTopArtists().artists.artist;
+        }
+
+        // getters and setters
 
         public string AlbumName { get => albumName; set => albumName = value; }
         public SearchAlbum? TheAlbum { get => theAlbum; set => theAlbum = value; }
         public Album5?[] TheTopAlbums { get => theTopAlbums; set => theTopAlbums = value; }
 
+
+        /*
+
+        // equals and hash
+        public override bool Equals(object? obj)
+        {
+            if (!(obj is Song))
+            {
+                return false;
+            }
+            var userAlbum = (Album)obj;
+            if (userAlbum.albumName.Equals(albumName) && userAlbum.ArtistName.Equals(ArtistName))
+            {
+
+                return true;
+
+            }
+            return false;
+        }
+
+
+        public static bool operator ==(Album left, Album right)
+        {
+            return !left.Equals(right);
+        }
+
+        public static bool operator !=(Album left, Album right)
+        {
+            return !left.Equals(right);
+        }
+
+
+        public override int GetHashCode()
+        {
+            return (albumName, ArtistName).GetHashCode();
+        }
+
+        */
+
+
+
+
+
+
+        /// compareTo method
+
+
+        public int CompareTo(Album other)
+        {
+
+            int result = string.Compare(ArtistName, other.ArtistName, ignoreCase: true);
+            if (result != 0)
+            {
+                result = string.Compare(albumName, other.albumName, ignoreCase: true);
+            }
+
+            return result;
+        }
+
+        public override string ToString()
+        {
+            return $"{{{nameof(AlbumName)}={AlbumName}, {nameof(TheAlbum)}={TheAlbum}, {nameof(TheTopAlbums)}={TheTopAlbums}, {nameof(ArtistName)}={ArtistName}, {nameof(TheArtist)}={TheArtist}, {nameof(TheTopArtist)}={TheTopArtist}}}";
+        }
+
+
+        //equals and hash
         public override bool Equals(object? obj)
         {
             return obj is Album album &&
@@ -36,13 +112,5 @@ namespace CA2MusicTobyZedomi.Music
         {
             return HashCode.Combine(ArtistName, albumName);
         }
-
-        public override string ToString()
-        {
-            return $"{{{nameof(AlbumName)}={AlbumName}, {nameof(TheAlbum)}={TheAlbum}, {nameof(TheTopAlbums)}={TheTopAlbums}, {nameof(ArtistName)}={ArtistName}, {nameof(TheArtist)}={TheArtist}, {nameof(TheTopArtist)}={TheTopArtist}}}";
-        }
-
-
-
     }
 }

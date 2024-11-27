@@ -81,15 +81,16 @@
 
 <br />
 
-<button @onclick="getTopSongs">Top Song</button>
+<button @onclick="getTopSongs">Top Song/Artist</button>
 
 
 <ol>
     @if (a1 != null)
     {
         <br />
+        <h1>Top Song</h1>
 
-        @foreach (var track in a1.TheTopArtist)
+        @foreach (var track in a1.TheTopSongs)
         {
             <table style="width:25%">
                 <tr>
@@ -100,6 +101,23 @@
             </table>
 
             
+        }
+
+
+        <br>
+        <h1>Top Artist</h1>
+
+        @foreach (var artist in a1.TheTopArtist)
+        {
+            <table style="width:25%">
+                <tr>
+                    <th>
+            <li>@artist.name</li></th>
+
+            </tr>
+            </table>
+
+
         }
 
         

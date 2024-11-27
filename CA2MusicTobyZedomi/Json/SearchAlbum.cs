@@ -1,7 +1,7 @@
 ﻿
 public class SearchAlbum
 {
-    public Results results { get; set; }
+    public Results4 results { get; set; }
 }
 
 public class Results4
