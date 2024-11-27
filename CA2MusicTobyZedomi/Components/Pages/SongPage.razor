@@ -125,6 +125,35 @@
 </ol>
 
 
+<h3>Get Most Popular Song By Country</h3>
+<input placeholder="Enter country..." @bind="country" />
+<button @onclick="mostPopularSong">Search For Artist</button>
+
+
+<ol>
+    @if (s2 != null)
+    {
+        <br />
+
+        @foreach (var track in s2.TheCountry.tracks.track)
+        {
+            <table style="width:25%">
+                <tr>
+                    <th>
+            <li>@track.name</li></th>
+
+            </tr>
+            </table>
+
+
+        }
+
+
+    }
+</ol>
+
+
+
 @code {
 
     private string? artist;
@@ -194,7 +223,32 @@
         a.Remove(song);
     }
 
+    // interface method 
 
+    private string? country;
+    private TopSongCountry? theCountry;
+    private Song? s2;
+  
+
+
+    public void mostPopularSong()
+    {
+
+        if (!string.IsNullOrWhiteSpace(country))
+        {
+
+            if (!string.IsNullOrWhiteSpace(country))
+            {
+                s2 = new Song(country);
+
+                theCountry = s2.mostPopularSongByCountry();
+            }
+
+
+        }
+
+        country = string.Empty;
+    }
    
 
   

@@ -1,6 +1,6 @@
 ﻿namespace CA2MusicTobyZedomi.Music
 {
-    public interface IMostPopular
+    public interface IMostPopularAlbum
     {
         public lfm? mostPopularArtistByCountry();
 

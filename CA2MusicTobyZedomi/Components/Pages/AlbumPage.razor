@@ -217,12 +217,12 @@
     }
 
 
-    // interface
+    // interface method
 
     private string? country;
     private lfm? theCountry;
     private Album? a2;
-    //  private List<Album?> a2 = new();
+   
 
 
     public void mostPopularArtist()
@@ -230,10 +230,12 @@
 
         if (!string.IsNullOrWhiteSpace(country))
         {
+             if (!string.IsNullOrWhiteSpace(country))
+            {
+                a2 = new Album(country);
 
-            a2 = new Album(country);
-
-            theCountry = a2.mostPopularArtistByCountry(); 
+                theCountry = a2.mostPopularArtistByCountry();
+            }
 
         }
 

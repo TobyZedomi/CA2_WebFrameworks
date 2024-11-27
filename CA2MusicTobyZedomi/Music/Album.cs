@@ -2,7 +2,7 @@
 
 namespace CA2MusicTobyZedomi.Music
 {
-    public class Album : MusicArtist, IComparable<Album>, IMostPopular
+    public class Album : MusicArtist, IComparable<Album>, IMostPopularAlbum
     {
 
 

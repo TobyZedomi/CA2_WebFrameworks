@@ -277,10 +277,41 @@ namespace CA2MusicTobyZedomi
         }
 
 
+        // get top Song By Country
+
+        public static TopSongCountry? getTopSongByCountry(string country)
+        {
+
+            var client = new RestClient("http://ws.audioscrobbler.com/2.0/");
+            var request = new RestRequest();
+
+            string Myuser = "test";
+            string myMethod = "geo.getTopTracks";
+            string myKey = "833c3bfe07b3b78ddd9a75eaff0ccaaf";
+
+            request.AddParameter("method", myMethod);
+            request.AddParameter("user", Myuser);
+            request.AddParameter("api_key", myKey);
+            request.AddParameter("country", country);
+            request.AddParameter("limit", 10);
+            request.AddParameter("format", "json");
+
+            var response = client.Get(request);
+
+            if (!string.IsNullOrEmpty(response.Content))
+            {
 
 
+                string receivedJson = response.Content;
+                TopSongCountry? topSong = JsonConvert.DeserializeObject<TopSongCountry>(receivedJson);
+                return topSong;
+
+            }
+            return null;
+        }
 
     }
+
 
 
 }
