@@ -1,5 +1,5 @@
 ﻿
-public class ArtistNews
+public class MusicArticleNews
 {
     public string status { get; set; }
     public string copyright { get; set; }

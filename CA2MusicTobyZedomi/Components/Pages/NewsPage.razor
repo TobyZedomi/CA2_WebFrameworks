@@ -1,63 +1,201 @@
 ﻿@page "/news"
+@using CA2MusicTobyZedomi.Music
 
 
 <h3>NewsPage</h3>
 
 
-<button @onclick="books">Top Books</button>
+<style>
+    table, th, td {
+        border: 1px solid black;
+    }
 
+    h4{
+        color: darkred;
+    }
+</style>
 
-@if(book != null)
+<button @onclick="rssMusic">Music RSS Feeds</button>
+
+<br />
+
+<ol>
+@if(n != null)
 {
-    @foreach(var results in book.results)
+
+    foreach(var news in n){
+
+
+    @foreach(var item in news.Feed.channel.item)
     {
-        <li>@results.list_name</li>
+
+        
+            <table style="width:100%">
+                <tr>
+                    <th><li><h4>Title: </h4>@item.title</li></th>
+                    <th><h4>Description: </h4>@item.description</th>
+                    <th><h4>RSS Feed Link:</h4><a href=@item.link> Click here to go to article</a></th>
+                </tr>
+            </table>
+
+    }
+
+    <br />
+            <button @onclick="@(e => Delete(news))">
+                Remove
+            </button>
+            <br />
     }
 }
 
+</ol>
+
+<br />
+
+
+
+<!---
+<button @onclick="SortNews">Sort Comment</button>
+-->
+
 <br />
 <br />
 
-<h3>Search for news</h3>
-<input placeholder="Enter section" @bind="section" />
-<button @onclick="searchNews">Search Section</button>
+<!--Music Articles-->
+
+
+<!---
+<h1>Available Music Articles</h1>
+<button @onclick="musicArticle">Music Article</button>
+
+
+@if (article != null)
+{
+    @foreach (var results in article.results)
+    {
+        <li>@results.title</li>
+    }
+}
+-->
+
+
+
+
+
+<h3>Search for general news on music, albums or songs</h3>
+<input placeholder="Enter music, songs or albums" @bind="section" />
+<button @onclick="searchNews">Search</button>
+
+
 
 
 <ol>
-    @if (t != null)
+    @if (n1 != null)
     {
 
-        @foreach (var docs in t.response.docs)
+        @foreach(var news in n1){
+
+        @foreach (var docs in news.TheArticle.response.docs)
         {
 
             <li>
-                @docs.section_name
+                @docs.section_name: 
+                @docs.lead_paragraph
             </li>
         }
+
+
+            <br />
+            <button @onclick="@(e => Delete1(news))">
+                Remove
+            </button>
+            <br />
+    }
     }
 </ol>
+
+
 
 
 
 @code {
 
 
+    private List<News?> n = new();
 
-    private GetBook? book;
+    //private News? n;
 
-    private void books()
+    private void rssMusic()
     {
-        book = NewsService.getBookNames();
+
+        News n1 = new News();
+
+        n.Add(n1);
+        //n = new News();
+    }
+
+    //sort songs
+
+    private void SortNews()
+    {
+        n.Sort();
     }
 
 
+    // delete
+
+    private void Delete(News news)
+    {
+        n.Remove(news);
+    }
+
+
+    // search music article
+
+
+    private List<News?> n1 = new();
     private string? section;
-    private ArtistNews? t;
-    private TopAlbum? album;
+    //private MusicArticleNews? t;
 
     private void searchNews()
     {
-        t = NewsService.SearchArtistNews(section);
+
+
+        if (section.Equals("music", StringComparison.InvariantCultureIgnoreCase) || section.Equals("songs", StringComparison.CurrentCultureIgnoreCase) || section.Equals("albums", StringComparison.CurrentCultureIgnoreCase) || section.Equals("album", StringComparison.CurrentCultureIgnoreCase) || section.Equals("song", StringComparison.CurrentCultureIgnoreCase))
+        {
+
+            News array = new News(section);
+
+            if (!string.IsNullOrWhiteSpace(section))
+            {
+
+                n1.Add(array);
+                // t = NewsService.SearchMusicNews(section);
+            }
+                
+            }
+
+            section = string.Empty;
+        
     }
+
+    // delete
+
+    private void Delete1(News news)
+    {
+        n1.Remove(news);
+    }
+
+    
+
+   /*
+    private MusicArticle? article;
+
+    private void musicArticle()
+    {
+        article = NewsService.getMusicArticle();
+    }
+
+   */
 
 }

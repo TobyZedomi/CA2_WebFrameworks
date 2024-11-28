@@ -242,7 +242,7 @@
     private string? country;
     private lfm? theCountry;
     private Album? a2;
-    private ArtistNews? t;
+    private MusicArticleNews? t;
 
 
     public void mostPopularArtist()
@@ -256,7 +256,7 @@
 
                 theCountry = a2.mostPopularArtistByCountry();
 
-                t = NewsService.SearchArtistNews(country);
+                t = NewsService.SearchMusicNews(country);
             }
 
         }

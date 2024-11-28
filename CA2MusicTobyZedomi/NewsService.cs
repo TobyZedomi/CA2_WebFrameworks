@@ -10,74 +10,10 @@ namespace CA2MusicTobyZedomi
     {
 
 
-        public static GetBook? getBookNames()
-        {
-
-
-            var client = new RestClient("https://api.nytimes.com/svc/books/v3/lists/names.json?");
-            var request = new RestRequest();
-
-            string Myuser = "test";
-            string myMethod = "names.json";
-            request.AddParameter("method", myMethod);
-            request.AddParameter("user", Myuser);
-            string myKey = "bgzqxUI7eDsNfCNHUjhvVnS3HZlJVXSs";
-            request.AddParameter("api-key", myKey);
-            request.AddParameter("limit", 10);
-            request.AddParameter("format", "json");
-
-            var response = client.Get(request);
-
-            if (!string.IsNullOrEmpty(response.Content))
-            {
-
-                string receivedJson = response.Content;
-                GetBook? topArtists = JsonConvert.DeserializeObject<GetBook>(receivedJson);
-                return topArtists;
-
-            }
-
-            return null;
-
-        }
-
-
-        //searchTopStories
-
-        public static TopStories? SearchTopStories(string section)
-        {
-            var client = new RestClient("https://api.nytimes.com/svc/topstories/v2/");
-            var request = new RestRequest();
-
-            string Myuser = "test";
-            string myMethod = "{section}.json";
-            request.AddParameter("method", myMethod);
-            request.AddParameter("user", Myuser);
-            string myKey = "bgzqxUI7eDsNfCNHUjhvVnS3HZlJVXSs";
-            request.AddParameter("api-key", myKey);
-            request.AddParameter("section", section);
-            request.AddParameter("limit", 10);
-            request.AddParameter("format", "json");
-
-            var response = client.Get(request);
-
-            if (!string.IsNullOrEmpty(response.Content))
-            {
-
-                string receivedJson = response.Content;
-                TopStories? topStories = JsonConvert.DeserializeObject<TopStories>(receivedJson);
-                return topStories;
-
-            }
-
-            return null;
-        }
-
-
-        /// search for artist information
+        /// search for article information
         /// using this one
 
-        public static ArtistNews? SearchArtistNews(string artist)
+        public static MusicArticleNews? SearchMusicNews(string artist)
         {
             var client = new RestClient("https://api.nytimes.com/svc/search/v2/articlesearch.json?");
             var request = new RestRequest();
@@ -98,13 +34,88 @@ namespace CA2MusicTobyZedomi
             {
 
                 string receivedJson = response.Content;
-                ArtistNews? topStories = JsonConvert.DeserializeObject<ArtistNews>(receivedJson);
+                MusicArticleNews? topStories = JsonConvert.DeserializeObject<MusicArticleNews>(receivedJson);
                 return topStories;
 
             }
 
             return null;
         }
+
+
+
+        //  Music rss feeds, xml file
+
+        public static rss? geRSSFeedsMusic()
+        {
+
+            var client = new RestClient("https://rss.nytimes.com/services/xml/rss/nyt/music.xml");
+            var request = new RestRequest();
+
+            string Myuser = "test";
+            string myMethod = "geo.getTopArtists";
+            string myKey = "bgzqxUI7eDsNfCNHUjhvVnS3HZlJVXSs";
+
+            request.AddParameter("method", myMethod);
+            request.AddParameter("user", Myuser);
+            request.AddParameter("api-key", myKey);
+            request.AddParameter("limit", 10);
+            request.AddParameter("format", "xml");
+
+            var response = client.Get(request);
+
+            if (!string.IsNullOrEmpty(response.Content))
+            {
+
+                var serializer = new XmlSerializer(typeof(rss));
+                using (StringReader sr = new(response.Content))
+                {
+                    rss? filtered = (rss?)serializer.Deserialize(sr);
+                    return filtered;
+                }
+
+            }
+            return null;
+        }
+
+
+
+        /*
+        // music article 
+
+
+        public static MusicArticle? getMusicArticle()
+        {
+            var client = new RestClient("https://api.nytimes.com/svc/news/v3/content/nyt/music.json?api-key=bgzqxUI7eDsNfCNHUjhvVnS3HZlJVXSs");
+            var request = new RestRequest();
+
+            string Myuser = "test";
+            string myMethod = "content.json";
+            request.AddParameter("method", myMethod);
+            request.AddParameter("user", Myuser);
+            string myKey = "bgzqxUI7eDsNfCNHUjhvVnS3HZlJVXSs";
+            request.AddParameter("api-key", myKey);
+           // request.AddParameter("q", artist);
+            request.AddParameter("limit", 10);
+            request.AddParameter("format", "json");
+
+            var response = client.Get(request);
+
+            if (!string.IsNullOrEmpty(response.Content))
+            {
+
+                string receivedJson = response.Content;
+                MusicArticle? topStories = JsonConvert.DeserializeObject<MusicArticle>(receivedJson);
+                return topStories;
+
+            }
+
+            return null;
+        }
+
+        */
+
+
 
     }
 }

@@ -26,8 +26,6 @@
         {
             TheTopSongs = MusicService.GetTopSong().tracks.track;
             TheTopArtist = MusicService.GetTopArtists().artists.artist;
-
-
         }
 
         public Song(string country)
