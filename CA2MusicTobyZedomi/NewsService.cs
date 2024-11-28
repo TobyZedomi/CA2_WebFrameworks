@@ -25,7 +25,7 @@ namespace CA2MusicTobyZedomi
             string myKey = "bgzqxUI7eDsNfCNHUjhvVnS3HZlJVXSs";
             request.AddParameter("api-key", myKey);
             request.AddParameter("q", artist);
-            request.AddParameter("limit", 10);
+            request.AddParameter("limit", 5);
             request.AddParameter("format", "json");
 
             var response = client.Get(request);

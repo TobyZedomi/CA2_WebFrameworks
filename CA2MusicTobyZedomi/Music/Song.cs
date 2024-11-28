@@ -12,8 +12,8 @@
 
         public Song(string songName, string artist, string artistName) : base(artistName)
         {
-            SongName = songName;
-            Artist = artist;
+            this.songName = songName;
+            this.artist = artist;
             TheSong = MusicService.SearchForSong(songName, artist);
             TheTopSongs = MusicService.GetTopSong().tracks.track;
             TheArtist = MusicService.SearchForArtist(artistName);

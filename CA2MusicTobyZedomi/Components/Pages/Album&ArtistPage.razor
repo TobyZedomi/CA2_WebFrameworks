@@ -9,6 +9,10 @@
     table, th, td {
       border:1px solid black;
     }
+
+    h4{
+        color:darkred;
+    }
 </style>
 
 <h3>Album & Artist Search</h3>
@@ -111,31 +115,14 @@
     }
 </ol>
 
-<!--News on top artist-->
 
-<ol>
-    @if (t != null)
-    {
+<!--Get top albums and news from aritst-->
 
-        @foreach (var docs in t.response.docs)
-        {
-            <table style="width:80%">
-                <tr>
-                    <th><li>@docs.section_name</li></th>
-                    <th>@docs.lead_paragraph</th>
-
-
-            </tr>
-            </table>
-        }
-    }
-</ol>
-
-
-<!---
 <br />
+<h3>Get Top Albums and News From Artist</h3>
+<input placeholder="Enter artist..." @bind="artistName" />
+<button @onclick="getTopAlbums">Search</button>
 
-<button @onclick="getTopAlbums">Top Album</button>
 
 
 <ol>
@@ -143,7 +130,7 @@
     {
         <br />
 
-        @foreach (var album in a1.TheTopAlbums)
+        @foreach (var album in a1.topalbums.album)
         {
             <table style="width:25%">
                 <tr>
@@ -159,7 +146,27 @@
 
     }
 </ol>
--->
+
+
+<ol>
+    @if (t != null)
+    {
+
+        @foreach (var docs in t.response.docs)
+        {
+
+            <table style="width:100%">
+                <tr>
+                    <th>
+            <li>@docs.section_name</li></th>
+            <th>@docs.lead_paragraph</th>
+
+
+            </tr>
+            </table>
+        }
+    }
+</ol>
 
 
 @code {
@@ -227,13 +234,23 @@
 
     // getTopAlbums
 
-    private Album? a1;
+    private string artistName;
+    private TopAlbum? a1;
+    private MusicArticleNews? t;
 
     private void getTopAlbums()
     {
 
-        a1 = new Album();
 
+        if (!string.IsNullOrWhiteSpace(artistName))
+        {
+
+            a1 = MusicService.GetTopAlbum(artistName);
+            t = NewsService.SearchMusicNews(artistName);
+
+        }
+
+        artistName = string.Empty;
     }
 
 
@@ -242,7 +259,7 @@
     private string? country;
     private lfm? theCountry;
     private Album? a2;
-    private MusicArticleNews? t;
+  
 
 
     public void mostPopularArtist()
@@ -250,14 +267,10 @@
 
         if (!string.IsNullOrWhiteSpace(country))
         {
-             if (!string.IsNullOrWhiteSpace(country))
-            {
-                a2 = new Album(country);
+          
+            a2 = new Album(country);
 
-                theCountry = a2.mostPopularArtistByCountry();
-
-                t = NewsService.SearchMusicNews(country);
-            }
+            theCountry = a2.mostPopularArtistByCountry();
 
         }
 

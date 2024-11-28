@@ -177,7 +177,7 @@ namespace CA2MusicTobyZedomi
 
         // get top album
 
-        public static TopAlbum? GetTopAlbum()
+        public static TopAlbum? GetTopAlbum(string artist)
         {
 
             var client = new RestClient("http://ws.audioscrobbler.com/2.0/");
@@ -189,7 +189,8 @@ namespace CA2MusicTobyZedomi
             request.AddParameter("user", Myuser);
             string myKey = "833c3bfe07b3b78ddd9a75eaff0ccaaf";
             request.AddParameter("api_key", myKey);
-            request.AddParameter("limit", 10);
+            request.AddParameter("limit", 5);
+            request.AddParameter("artist", artist);
             request.AddParameter("format", "json");
 
             var response = client.Get(request);
@@ -224,7 +225,7 @@ namespace CA2MusicTobyZedomi
             request.AddParameter("user", Myuser);
             request.AddParameter("api_key", myKey);
             request.AddParameter("country", country);
-            request.AddParameter("limit", 1);
+            request.AddParameter("limit", 5);
             request.AddParameter("format", "xml");
 
             var response = client.Get(request);

@@ -5,7 +5,7 @@ namespace CA2MusicTobyZedomi.Music
     public class Album : MusicArtist, IComparable<Album>, IMostPopularAlbum
     {
 
-
+       // private string artistName;
         private string albumName;
         private SearchAlbum? theAlbum;
         private Album5?[] theTopAlbums;
@@ -15,20 +15,27 @@ namespace CA2MusicTobyZedomi.Music
 
         public Album(string albumName, string artistName) : base(artistName)
         {
-            AlbumName = albumName;
+            this.albumName = albumName;
             TheAlbum = MusicService.SearchForAlbum(albumName);
-            //  TheTopAlbums = MusicService.GetTopAlbum().topalbums.album;
+          //  TheTopAlbums = MusicService.GetTopAlbum().topalbums.album;
             TheArtist = MusicService.SearchForArtist(artistName);
             TheTopArtist = MusicService.GetTopArtists().artists.artist;
         }
 
 
-
         public Album()
         {
-            TheTopAlbums = MusicService.GetTopAlbum().topalbums.album;
             TheTopArtist = MusicService.GetTopArtists().artists.artist;
         }
+
+        /*
+        public Album(string artistName)
+        {
+            this.artistName = artistName;
+            TheTopAlbums = MusicService.GetTopAlbum(artistName).topalbums.album;
+        }
+
+        */
 
         public Album(string country)
         {
@@ -42,49 +49,7 @@ namespace CA2MusicTobyZedomi.Music
         public Album5?[] TheTopAlbums { get => theTopAlbums; set => theTopAlbums = value; }
         public lfm? TheCountry { get => theCountry; set => theCountry = value; }
         public string Country { get => country; set => country = value; }
-
-
-        /*
-
-        // equals and hash
-        public override bool Equals(object? obj)
-        {
-            if (!(obj is Song))
-            {
-                return false;
-            }
-            var userAlbum = (Album)obj;
-            if (userAlbum.albumName.Equals(albumName) && userAlbum.ArtistName.Equals(ArtistName))
-            {
-
-                return true;
-
-            }
-            return false;
-        }
-
-
-        public static bool operator ==(Album left, Album right)
-        {
-            return !left.Equals(right);
-        }
-
-        public static bool operator !=(Album left, Album right)
-        {
-            return !left.Equals(right);
-        }
-
-
-        public override int GetHashCode()
-        {
-            return (albumName, ArtistName).GetHashCode();
-        }
-
-        */
-
-
-
-
+       // public string ArtistName { get => artistName; set => artistName = value; }
 
 
         /// compareTo method
