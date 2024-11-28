@@ -208,40 +208,6 @@ namespace CA2MusicTobyZedomi
         }
 
 
-        /// get lyrics from artist and song 
-        /// 
-
-        public static ArtistLyrics? GetLyrics(string artist, string title)
-        {
-
-
-
-           var client = new RestClient("https://api.lyrics.ovh/v1/");
-            var request = new RestRequest();
-
-           // string Myuser = "test";
-            //string myMethod = "lyrics.ovh";
-           // request.AddParameter("method", myMethod);
-           // request.AddParameter("user", Myuser);
-            request.AddParameter("artist", artist);
-            request.AddParameter("title", title);
-          //  request.AddParameter("format", "json");
-
-            var response = client.Get(request);
-
-            if (!string.IsNullOrEmpty(response.Content))
-            {
-
-                string receivedJson = response.Content;
-                ArtistLyrics? topLyrics = JsonConvert.DeserializeObject<ArtistLyrics>(receivedJson);
-                return topLyrics;
-
-            }
-
-            return null;
-
-        }
-
         // get Top Artist by country xml file
 
         public static lfm? getTopArtistByCountry(string country)

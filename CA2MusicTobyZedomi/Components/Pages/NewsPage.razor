@@ -59,28 +59,6 @@
 -->
 
 <br />
-<br />
-
-<!--Music Articles-->
-
-
-<!---
-<h1>Available Music Articles</h1>
-<button @onclick="musicArticle">Music Article</button>
-
-
-@if (article != null)
-{
-    @foreach (var results in article.results)
-    {
-        <li>@results.title</li>
-    }
-}
--->
-
-
-
-
 
 <h3>Search for general news on music, albums or songs</h3>
 <input placeholder="Enter music, songs or albums" @bind="section" />
@@ -187,15 +165,5 @@
     }
 
     
-
-   /*
-    private MusicArticle? article;
-
-    private void musicArticle()
-    {
-        article = NewsService.getMusicArticle();
-    }
-
-   */
 
 }

@@ -80,40 +80,7 @@ namespace CA2MusicTobyZedomi
 
 
 
-        /*
-        // music article 
-
-
-        public static MusicArticle? getMusicArticle()
-        {
-            var client = new RestClient("https://api.nytimes.com/svc/news/v3/content/nyt/music.json?api-key=bgzqxUI7eDsNfCNHUjhvVnS3HZlJVXSs");
-            var request = new RestRequest();
-
-            string Myuser = "test";
-            string myMethod = "content.json";
-            request.AddParameter("method", myMethod);
-            request.AddParameter("user", Myuser);
-            string myKey = "bgzqxUI7eDsNfCNHUjhvVnS3HZlJVXSs";
-            request.AddParameter("api-key", myKey);
-           // request.AddParameter("q", artist);
-            request.AddParameter("limit", 10);
-            request.AddParameter("format", "json");
-
-            var response = client.Get(request);
-
-            if (!string.IsNullOrEmpty(response.Content))
-            {
-
-                string receivedJson = response.Content;
-                MusicArticle? topStories = JsonConvert.DeserializeObject<MusicArticle>(receivedJson);
-                return topStories;
-
-            }
-
-            return null;
-        }
-
-        */
+      
 
 
 
