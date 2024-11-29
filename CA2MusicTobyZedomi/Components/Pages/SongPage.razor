@@ -5,13 +5,23 @@
 
 <PageTitle>Song Page</PageTitle>
 
+<h1><u>SongPage</u></h1>
+
 <style>
     table, th, td {
       border:1px solid black;
     }
+
+    h4{
+        font-weight: bold;
+    }
+
+    h1{
+        color: darkred;
+    }
 </style>
 
-<h3>Song Search</h3>
+<h4>Song Search</h4>
 <input placeholder="Enter song..." @bind="song" />
 <input placeholder="Enter artist..." @bind="artist" />
 <button @onclick="searchSong">Search For Song</button>
@@ -70,7 +80,7 @@
 <br />
 
 
-<button @onclick="SortSongs">Sort Comment</button>
+<button @onclick="SortSongs">Sort Songs</button>
 
 <br />
 
@@ -88,7 +98,7 @@
     @if (a1 != null)
     {
         <br />
-        <h1>Top Song</h1>
+        <h4>Current Top Songs: </h4>
 
         @foreach (var track in a1.TheTopSongs)
         {
@@ -102,10 +112,17 @@
 
             
         }
+ 
+    }
+</ol>
 
 
+<ol>
+
+
+    @if(a1 != null){
         <br>
-        <h1>Top Artist</h1>
+        <h4>Current Top Artist: </h4>
 
         @foreach (var artist in a1.TheTopArtist)
         {
@@ -119,21 +136,20 @@
 
 
         }
-
-        
     }
 </ol>
 
 
-<h3>Get Most Popular Song By Country</h3>
+<h4>Get Most Popular Songs By Country</h4>
 <input placeholder="Enter country..." @bind="country" />
-<button @onclick="mostPopularSong">Search For Artist</button>
+<button @onclick="mostPopularSong">Search For Country</button>
 
 
 <ol>
     @if (s2 != null)
     {
         <br />
+        <h4>Most Popular Songs: </h4>
 
         @foreach (var track in s2.TheCountry.tracks.track)
         {

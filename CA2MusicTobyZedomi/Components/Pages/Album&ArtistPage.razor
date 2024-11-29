@@ -3,7 +3,7 @@
 @using CA2MusicTobyZedomi.Music
 
 
-<h3>AlbumPage</h3>
+<h1><u>AlbumPage</u></h1>
 
 <style>
     table, th, td {
@@ -11,13 +11,17 @@
     }
 
     h4{
-        color:darkred;
+        font-weight: bold;
+    }
+
+    h1 {
+        color: darkred;
     }
 </style>
 
-<h3>Album & Artist Search</h3>
-<input placeholder="Search for album..." @bind="album" />
-<input placeholder="Search for artist..." @bind="artist" />
+<h4>Album & Artist Search</h4>
+<input placeholder="Enter album..." @bind="album" />
+<input placeholder="Enter artist..." @bind="artist" />
 <button @onclick="searchAlbum">Search For Album/Artist</button>
 
 
@@ -32,7 +36,7 @@
 
             <br />
 
-            <p>Albums</p>
+            <h4>Albums:</h4>
 
             @foreach (var album in albums.TheAlbum.results.albummatches.album)
 
@@ -52,7 +56,7 @@
 
             <br />
 
-            <p>Artist</p>
+            <h4>Artist:</h4>
 
                 @foreach (var artist in albums.TheArtist.results.artistmatches.artist)
               {
@@ -88,7 +92,7 @@
 
 <br>
 
-<h3>Get Most Popular Artist in Country</h3>
+<h4>Get Most Popular Artists By Country</h4>
 <input placeholder="Enter country..." @bind="country" />
 <button @onclick="mostPopularArtist">Search For Artist</button>
 
@@ -98,13 +102,14 @@
     {
         <br />
 
+        <h4>Most Popular Artist:</h4>
+
         @foreach (var artist in a2.TheCountry.topartists.artist)
         {
             <table style="width:25%">
                 <tr>
                     <th>
             <li>@artist.name</li></th>
-
             </tr>
             </table>
 
@@ -119,7 +124,7 @@
 <!--Get top albums and news from aritst-->
 
 <br />
-<h3>Get Top Albums and News From Artist</h3>
+<h4>Get Top Albums and News From Artist</h4>
 <input placeholder="Enter artist..." @bind="artistName" />
 <button @onclick="getTopAlbums">Search</button>
 
@@ -129,6 +134,8 @@
     @if (a1 != null)
     {
         <br />
+        <h4>Top Albums:</h4>
+
 
         @foreach (var album in a1.topalbums.album)
         {
@@ -151,6 +158,7 @@
 <ol>
     @if (t != null)
     {
+        <h4>News on Artist:</h4>
 
         @foreach (var docs in t.response.docs)
         {
@@ -160,6 +168,7 @@
                     <th>
             <li>@docs.section_name</li></th>
             <th>@docs.lead_paragraph</th>
+            <th><a href=@docs.web_url> Click here to go to website</a></th>
 
 
             </tr>

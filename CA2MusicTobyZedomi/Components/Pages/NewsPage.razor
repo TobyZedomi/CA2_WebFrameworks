@@ -2,7 +2,7 @@
 @using CA2MusicTobyZedomi.Music
 
 
-<h3>NewsPage</h3>
+<h1><u>MusicNewsPage</u></h1>
 
 
 <style>
@@ -11,6 +11,10 @@
     }
 
     h4{
+        font-weight: bold;
+    }
+
+    h1 {
         color: darkred;
     }
 </style>
@@ -18,7 +22,7 @@
 <button @onclick="rssMusic">Music RSS Feeds</button>
 
 <br />
-
+<br />
 <ol>
 @if(n != null)
 {
@@ -34,7 +38,7 @@
                 <tr>
                     <th><li><h4>Title: </h4>@item.title</li></th>
                     <th><h4>Description: </h4>@item.description</th>
-                    <th><h4>RSS Feed Link:</h4><a href=@item.link> Click here to go to article</a></th>
+                    <th><a href=@item.link> Click here to go to article</a></th>
                 </tr>
             </table>
 
@@ -60,12 +64,13 @@
 
 <br />
 
-<h3>Search for general news on music, albums or songs</h3>
-<input placeholder="Enter music, songs or albums" @bind="section" />
+<h4>Search for general news on music, albums or songs</h4>
+<input placeholder="Enter music, songs or albums" @bind="section1" />
 <button @onclick="searchNews">Search</button>
 
 
-
+<br />
+<br />
 
 <ol>
     @if (n1 != null)
@@ -73,13 +78,21 @@
 
         @foreach(var news in n1){
 
+            <h4>News: </h4>
+
         @foreach (var docs in news.TheArticle.response.docs)
         {
 
-            <li>
-                @docs.section_name: 
-                @docs.lead_paragraph
-            </li>
+                <table style="width:100%">
+                    <tr>
+                        <th>
+                <li>@docs.section_name</li></th>
+                <th>@docs.lead_paragraph</th>
+                <th><a href=@docs.web_url> Click here to go to website</a></th>
+
+
+                </tr>
+                </table>
         }
 
 
@@ -106,9 +119,9 @@
     private void rssMusic()
     {
 
-        News n1 = new News();
+        News news1 = new News();
 
-        n.Add(n1);
+        n.Add(news1);
         //n = new News();
     }
 
@@ -132,19 +145,19 @@
 
 
     private List<News?> n1 = new();
-    private string? section;
+    private string? section1;
     //private MusicArticleNews? t;
 
     private void searchNews()
     {
 
 
-        if (section.Equals("music", StringComparison.InvariantCultureIgnoreCase) || section.Equals("songs", StringComparison.CurrentCultureIgnoreCase) || section.Equals("albums", StringComparison.CurrentCultureIgnoreCase) || section.Equals("album", StringComparison.CurrentCultureIgnoreCase) || section.Equals("song", StringComparison.CurrentCultureIgnoreCase))
+        if (section1.Equals("music", StringComparison.InvariantCultureIgnoreCase) || section1.Equals("songs", StringComparison.CurrentCultureIgnoreCase) || section1.Equals("albums", StringComparison.CurrentCultureIgnoreCase) || section1.Equals("album", StringComparison.CurrentCultureIgnoreCase) || section1.Equals("song", StringComparison.CurrentCultureIgnoreCase))
         {
 
-            News array = new News(section);
+            News array = new News(section1);
 
-            if (!string.IsNullOrWhiteSpace(section))
+            if (!string.IsNullOrWhiteSpace(section1))
             {
 
                 n1.Add(array);
@@ -153,7 +166,7 @@
                 
             }
 
-            section = string.Empty;
+            section1 = string.Empty;
         
     }
 
