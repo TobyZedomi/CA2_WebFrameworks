@@ -5,6 +5,8 @@ VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CA2MusicTobyZedomi", "CA2MusicTobyZedomi\CA2MusicTobyZedomi.csproj", "{4393DDA9-79EF-4C61-99C3-490D0D180957}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CA2MusicTobyZedomiTests1", "CA2MusicTobyZedomiTests1\CA2MusicTobyZedomiTests1.csproj", "{16474FCB-2C82-43FD-98CC-5C9522392FF2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{4393DDA9-79EF-4C61-99C3-490D0D180957}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4393DDA9-79EF-4C61-99C3-490D0D180957}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4393DDA9-79EF-4C61-99C3-490D0D180957}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16474FCB-2C82-43FD-98CC-5C9522392FF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16474FCB-2C82-43FD-98CC-5C9522392FF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16474FCB-2C82-43FD-98CC-5C9522392FF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16474FCB-2C82-43FD-98CC-5C9522392FF2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

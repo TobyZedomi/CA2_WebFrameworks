@@ -41,7 +41,7 @@ namespace CA2MusicTobyZedomi.Music
         // equals and hash
         public override bool Equals(object? obj)
         {
-            if (!(obj is Song))
+            if (!(obj is User))
             {
                 return false;
             }

@@ -2,7 +2,7 @@
 
 namespace CA2MusicTobyZedomi.Music
 {
-    public class News : IComparable<News>
+    public class News //: IComparable<News>
     {
 
         private rss? feed;
@@ -23,8 +23,11 @@ namespace CA2MusicTobyZedomi.Music
         public string Section { get => section; set => section = value; }
         public MusicArticleNews? TheArticle { get => theArticle; set => theArticle = value; }
 
+        
+       
 
 
+        /*
         //compareToMethod
         public int CompareTo(News other)
         {
@@ -37,6 +40,7 @@ namespace CA2MusicTobyZedomi.Music
 
             return result;
         }
+        */
 
 
     }

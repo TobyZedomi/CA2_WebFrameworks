@@ -1,4 +1,5 @@
-﻿namespace CA2MusicTobyZedomi.Music
+﻿
+namespace CA2MusicTobyZedomi.Music
 {
     public abstract class MusicArtist
     {
@@ -32,8 +33,15 @@
             return base.ToString();
         }
 
+        public override bool Equals(object? obj)
+        {
+            return obj is MusicArtist artist &&
+                   ArtistName == artist.ArtistName;
+        }
 
-
-
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(ArtistName);
+        }
     }
 }
