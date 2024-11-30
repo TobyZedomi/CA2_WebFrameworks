@@ -1,4 +1,6 @@
 ﻿@inherits LayoutComponentBase
+@inject Blazored.SessionStorage.ISessionStorageService session
+@using CA2MusicTobyZedomi.Music
 
 <div class="page">
     <div class="sidebar">
@@ -7,7 +9,7 @@
 
     <main>
         <div class="top-row px-4">
-            <a href="login" target="_blank">LogOut</a>
+            <a href="login"><button class="btn -btn-success" @onclick="LogOut">LogOut</button></a>
         </div>
 
         <article class="content px-4">
@@ -23,3 +25,14 @@
 </div>
 
 
+@code {
+    public User user;
+
+
+
+    public void LogOut()
+    {
+        session.ClearAsync();
+        user = new User();
+    }
+}
