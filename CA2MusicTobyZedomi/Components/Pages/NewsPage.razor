@@ -27,7 +27,7 @@
 @if(n != null)
 {
 
-    foreach(var news in n){
+    @foreach(var news in n){
 
 
     @foreach(var item in news.Feed.channel.item)
@@ -114,7 +114,6 @@
 
     private List<News?> n = new();
 
-    //private News? n;
 
     private void rssMusic()
     {
@@ -122,7 +121,7 @@
         News news1 = new News();
 
         n.Add(news1);
-        //n = new News();
+        
     }
 
     //sort songs
@@ -146,7 +145,7 @@
 
     private List<News?> n1 = new();
     private string? section1;
-    //private MusicArticleNews? t;
+   
 
     private void searchNews()
     {
@@ -161,7 +160,7 @@
             {
 
                 n1.Add(array);
-                // t = NewsService.SearchMusicNews(section);
+               
             }
                 
             }

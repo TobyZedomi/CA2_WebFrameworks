@@ -42,46 +42,6 @@
         public TopSongCountry? TheCountry { get => theCountry; set => theCountry = value; }
 
 
-
-        /*
-        public override bool Equals(object? obj)
-        {
-            if (!(obj is Song))
-            {
-                return false;
-            }
-            var userSong = (Song)obj;
-            if (userSong.songName.Equals(songName) && userSong.ArtistName.Equals(ArtistName))
-            {
-
-                return true;
-
-            }
-            return false;
-        }
-
-
-        public static bool operator ==(Song left, Song right)
-        {
-            return !left.Equals(right);
-        }
-
-        public static bool operator !=(Song left, Song right)
-        {
-            return !left.Equals(right);
-        }
-
-
-        public override int GetHashCode()
-        {
-            return (songName, ArtistName).GetHashCode();
-        }
-
-        */
-
-
-
-
         /// compareTo method
         /// 
 
