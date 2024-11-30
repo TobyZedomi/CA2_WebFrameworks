@@ -50,7 +50,7 @@
     <label for=""><b>Email</b></label>
     <input type="email" placeholder="Enter Email..." @bind="email1">
 
-    <button @onclick="SetSessionUser">Register</button>
+    <button @onclick="RegesiterUser">Register</button>
 
 </div>
 
@@ -74,7 +74,7 @@
     private string? email1;
     private string? password1;
 
-    private void SetSessionUser()
+    private void RegesiterUser()
     {
 
         if (!string.IsNullOrWhiteSpace(name1) && !string.IsNullOrWhiteSpace(email1) && !string.IsNullOrWhiteSpace(password1))

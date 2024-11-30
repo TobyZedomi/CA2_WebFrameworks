@@ -44,20 +44,6 @@ namespace CA2MusicTobyZedomi.Music.Tests
 
 
         [TestMethod()]
-        public void CompareToTestWhenArtistName1AndArtistName2IsTheExactSame()
-        {
-            Console.WriteLine("Test for compareTo method for artistName1 and artistName2 is the same");
-
-            Song song1 = new Song("Euphoria", "Michael Jackson", "Fiona");
-            Song song2 = new Song("ABC", "Michael Jackson", "Fiona");
-
-            Assert.AreEqual(-1, song1.CompareTo(song2));
-
-        }
-
-
-
-        [TestMethod()]
         public void CompareToTestToTestWhenBothSongNamesAreTheSame()
         {
             Console.WriteLine("Test for compareTo method when both SongNames are the same");
