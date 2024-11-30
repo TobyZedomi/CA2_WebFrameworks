@@ -27,10 +27,10 @@
 
 <!-- Search Album/Artist results -->
 <ol>
-    @if (a != null)
+    @if (albumList != null)
     {
 
-        @foreach (var albums in a)
+        @foreach (var albums in albumList)
         {
 
 
@@ -94,17 +94,17 @@
 
 <h4>Get Most Popular Artists By Country</h4>
 <input placeholder="Enter country..." @bind="country" />
-<button @onclick="mostPopularArtist">Search For Artist</button>
+<button @onclick="mostPopularArtist">Search For Country</button>
 
 
 <ol>
-    @if (a2 != null)
+    @if (album2 != null)
     {
         <br />
 
         <h4>Most Popular Artist:</h4>
 
-        @foreach (var artist in a2.TheCountry.topartists.artist)
+        @foreach (var artist in album2.TheCountry.topartists.artist)
         {
             <table style="width:25%">
                 <tr>
@@ -131,13 +131,13 @@
 
 
 <ol>
-    @if (a1 != null)
+    @if (topAlbum != null)
     {
         <br />
         <h4>Top Albums:</h4>
 
 
-        @foreach (var album in a1.topalbums.album)
+        @foreach (var album in topAlbum.topalbums.album)
         {
             <table style="width:25%">
                 <tr>
@@ -184,7 +184,7 @@
 
     private string? album;
     private string? artist;
-    private List<Album?> a = new();
+    private List<Album?> albumList = new();
 
 
     public void searchAlbum()
@@ -198,7 +198,7 @@
 
             if (!CheckDuplicateAlbum(newAlbum))
             {
-                a.Add(newAlbum);
+                albumList.Add(newAlbum);
             }
 
         }
@@ -214,7 +214,7 @@
     public bool CheckDuplicateAlbum(Album album)
     {
 
-        foreach (var albumToCompare in a)
+        foreach (var albumToCompare in albumList)
         {
             if (albumToCompare.Equals(album))
             {
@@ -230,21 +230,21 @@
 
     private void SortAlbum()
     {
-        a.Sort();
+        albumList.Sort();
     }
 
     // delete songs
 
     private void Delete(Album album)
     {
-        a.Remove(album);
+        albumList.Remove(album);
     }
 
 
     // getTopAlbums
 
     private string artistName;
-    private TopAlbum? a1;
+    private TopAlbum? topAlbum;
     private MusicArticleNews? t;
 
     private void getTopAlbums()
@@ -254,7 +254,7 @@
         if (!string.IsNullOrWhiteSpace(artistName))
         {
 
-            a1 = MusicService.GetTopAlbum(artistName);
+            topAlbum = MusicService.GetTopAlbum(artistName);
             t = NewsService.SearchMusicNews(artistName);
 
         }
@@ -267,7 +267,7 @@
 
     private string? country;
     private lfm? theCountry;
-    private Album? a2;
+    private Album? album2;
   
 
 
@@ -277,9 +277,9 @@
         if (!string.IsNullOrWhiteSpace(country))
         {
           
-            a2 = new Album(country);
+            album2 = new Album(country);
 
-            theCountry = a2.mostPopularArtistByCountry();
+            theCountry = album2.mostPopularArtistByCountry();
 
         }
 

@@ -69,7 +69,7 @@
 
 
     string message;
-    private List<User?> u = new();
+    private List<User?> userlist = new();
     private string? name1;
     private string? email1;
     private string? password1;
@@ -85,10 +85,10 @@
 
             if (!CheckDuplicateUser(user))
             {
-                u.Add(user);
+                userlist.Add(user);
             }
 
-            session.SetItemAsync("SessionUser", u);
+            session.SetItemAsync("SessionUser", userlist);
 
             message = "Click here To Go To Login Page";
 
@@ -104,7 +104,7 @@
     public bool CheckDuplicateUser(User user)
     {
 
-        foreach (var userToCompare in u)
+        foreach (var userToCompare in userlist)
         {
             if (userToCompare.Equals(user))
             {

@@ -29,10 +29,10 @@
 
 <!-- Search Song results -->
 <ol>
-    @if (a != null)
+    @if (song4 != null)
     {
 
-        @foreach (var song in a)
+        @foreach (var song in song4)
         {
             <br />
 
@@ -80,12 +80,12 @@
 
 
 <ol>
-    @if (a1 != null)
+    @if (song1 != null)
     {
         <br />
         <h4>Current Top Songs: </h4>
 
-        @foreach (var track in a1.TheTopSongs)
+        @foreach (var track in song1.TheTopSongs)
         {
             <table style="width:25%">
                 <tr>
@@ -105,11 +105,11 @@
 <ol>
 
 
-    @if(a1 != null){
+    @if(song1 != null){
         <br>
         <h4>Current Top Artist: </h4>
 
-        @foreach (var artist in a1.TheTopArtist)
+        @foreach (var artist in song1.TheTopArtist)
         {
             <table style="width:25%">
                 <tr>
@@ -131,12 +131,12 @@
 
 
 <ol>
-    @if (s2 != null)
+    @if (song2 != null)
     {
         <br />
         <h4>Most Popular Songs: </h4>
 
-        @foreach (var track in s2.TheCountry.tracks.track)
+        @foreach (var track in song2.TheCountry.tracks.track)
         {
             <table style="width:25%">
                 <tr>
@@ -159,7 +159,7 @@
 
     private string? artist;
     private string? song;
-    private List<Song?> a = new();
+    private List<Song?> song4 = new();
 
     //search for songs
 
@@ -174,7 +174,7 @@
 
             if (!CheckDuplicateSong(newSong))
             {
-                a.Add(newSong);
+                song4.Add(newSong);
             }
 
         }
@@ -188,7 +188,7 @@
     public bool CheckDuplicateSong(Song song)
     {
 
-        foreach (var songToCompare in a)
+        foreach (var songToCompare in song4)
         {
             if (songToCompare.Equals(song))
             {
@@ -201,12 +201,12 @@
 
     // get top song
 
-    private Song? a1;
+    private Song? song1;
 
     private void getTopSongs()
     {
 
-             a1 = new Song();
+             song1 = new Song();
 
     }
 
@@ -214,21 +214,21 @@
 
     private void SortSongs()
     {
-        a.Sort();
+        song4.Sort();
     }
 
     // delete songs
 
     private void Delete(Song song)
     {
-        a.Remove(song);
+        song4.Remove(song);
     }
 
     // interface method 
 
     private string? country;
     private TopSongCountry? theCountry;
-    private Song? s2;
+    private Song? song2;
   
 
 
@@ -240,9 +240,9 @@
 
             if (!string.IsNullOrWhiteSpace(country))
             {
-                s2 = new Song(country);
+                song2 = new Song(country);
 
-                theCountry = s2.mostPopularSongByCountry();
+                theCountry = song2.mostPopularSongByCountry();
             }
 
 

@@ -60,12 +60,12 @@
 <a href="/"><button>Register</button></a>
 
 
-@if (u != null)
+@if (userList != null)
 {
 
-    for (int i = 0; i < u.Count; i++)
+    for (int i = 0; i < userList.Count; i++)
     {
-        @if (name.Equals(u[i].Name) && password.Equals(u[i].Password))
+        @if (name.Equals(userList[i].Name) && password.Equals(userList[i].Password))
         {
             <a href="home"><button class="btn -btn-success">Click here Go To Home Page</button></a>
         }
@@ -80,14 +80,14 @@
 
 @code {
 
-    private List<User?> u = new();
+    private List<User?> userList = new();
     private string? name;
     private string? password;
 
     public async Task LoginUser()
     {
 
-        u = await session.GetItemAsync<List<User>>("SessionUser");
+        userList = await session.GetItemAsync<List<User>>("SessionUser");
 
     }
 }

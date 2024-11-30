@@ -24,10 +24,10 @@
 <br />
 <br />
 <ol>
-@if(n != null)
+@if(newsList != null)
 {
 
-    @foreach(var news in n){
+    @foreach(var news in newsList){
 
 
     @foreach(var item in news.Feed.channel.item)
@@ -73,10 +73,10 @@
 <br />
 
 <ol>
-    @if (n1 != null)
+    @if (newsList1 != null)
     {
 
-        @foreach(var news in n1){
+        @foreach(var news in newsList1){
 
             <h4>News: </h4>
 
@@ -112,7 +112,7 @@
 @code {
 
 
-    private List<News?> n = new();
+    private List<News?> newsList = new();
 
 
     private void rssMusic()
@@ -120,7 +120,7 @@
 
         News news1 = new News();
 
-        n.Add(news1);
+        newsList.Add(news1);
         
     }
 
@@ -128,7 +128,7 @@
 
     private void SortNews()
     {
-        n.Sort();
+        newsList.Sort();
     }
 
 
@@ -136,14 +136,14 @@
 
     private void Delete(News news)
     {
-        n.Remove(news);
+        newsList.Remove(news);
     }
 
 
     // search music article
 
 
-    private List<News?> n1 = new();
+    private List<News?> newsList1 = new();
     private string? section1;
    
 
@@ -159,7 +159,7 @@
             if (!string.IsNullOrWhiteSpace(section1))
             {
 
-                n1.Add(array);
+                newsList1.Add(array);
                
             }
                 
@@ -173,7 +173,7 @@
 
     private void Delete1(News news)
     {
-        n1.Remove(news);
+        newsList1.Remove(news);
     }
 
     
