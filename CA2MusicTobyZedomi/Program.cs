@@ -1,3 +1,4 @@
+using Blazored.SessionStorage;
 using CA2MusicTobyZedomi.Components;
 
 namespace CA2MusicTobyZedomi
@@ -11,6 +12,9 @@ namespace CA2MusicTobyZedomi
             // Add services to the container.
             builder.Services.AddRazorComponents()
                 .AddInteractiveServerComponents();
+
+            builder.Services.AddBlazoredSessionStorage();
+
 
             var app = builder.Build();
 

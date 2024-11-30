@@ -1,0 +1,118 @@
+﻿@page "/"
+@inject Blazored.SessionStorage.ISessionStorageService session
+@using CA2MusicTobyZedomi.Music
+
+@layout NoMenuLayout
+
+
+<style>
+
+    input[type=text], input[type=password], input[type=email] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+
+    button {
+        background-color: black;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+    }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+    .container {
+        padding: 16px;
+    }
+
+
+    }
+</style>
+
+
+<h3>Registration Page</h3>
+
+<div class="container">
+    <label for="uname"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username..." @bind="name1">
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password..." @bind="password1">
+
+    <label for=""><b>Email</b></label>
+    <input type="email" placeholder="Enter Email..." @bind="email1">
+
+    <button @onclick="SetSessionUser">Register</button>
+
+</div>
+<a href="/login"><button>Login</button></a>
+
+
+
+
+
+
+<a href="login"><label>@message</label></a>
+
+
+@code {
+
+
+    string message;
+    private List<User?> u = new();
+    private string? name1;
+    private string? email1;
+    private string? password1;
+
+    private void SetSessionUser()
+    {
+
+        if (!string.IsNullOrWhiteSpace(name1) && !string.IsNullOrWhiteSpace(email1) && !string.IsNullOrWhiteSpace(password1))
+        {
+
+            User user = new User(name1, email1, password1);
+
+
+            if (!CheckDuplicateUser(user))
+            {
+                u.Add(user);
+            }
+
+            session.SetItemAsync("SessionUser", u);
+
+            message = "Click here To Go To Login Page";
+
+        }
+
+        name1 = string.Empty;
+        email1 = string.Empty;
+        password1 = string.Empty;
+
+    }
+
+
+    public bool CheckDuplicateUser(User user)
+    {
+
+        foreach (var userToCompare in u)
+        {
+            if (userToCompare.Equals(user))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+}
